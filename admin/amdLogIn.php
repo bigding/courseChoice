@@ -6,8 +6,6 @@ $password = $_POST["password"];
 $userId = trim(HTMLSpecialchars($userId));
 $password= trim(HTMLSpecialchars($password));
 
-
-
 require "mysqlConfig.php";
 $sql = "select * from student_info WHERE stuNo= {$userId} and password = {$password}";
 echo $sql."<br>";
@@ -25,5 +23,8 @@ else{
     session_start();
     $_SESSION["pageuser"] = $pageuser;
     echo"成功登陆";
+    echo "<script>
+            window.location.href='seeCourse.php'
+        </script>";
 }
 ?>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>查看课程</title>
+    <title>查看学生课程信息-总览</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="../css/bootstrap.min.css"/>
@@ -33,7 +33,7 @@
                 <li class="divider"></li>
                 <li><a href="#"><i class="icon-check"></i> My Tasks</a></li>
                 <li class="divider"></li>
-                <li><a href="seeCourse.html"><i class="icon-key"></i> Log Out</a></li>
+                <li><a href="seeCourse.php"><i class="icon-key"></i> Log Out</a></li>
             </ul>
         </li>
         <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages"
@@ -50,7 +50,7 @@
             </ul>
         </li>
         <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
-        <li class=""><a title="" href="seeCourse.html"><i class="icon icon-share-alt"></i> <span
+        <li class=""><a title="" href="seeCourse.php"><i class="icon icon-share-alt"></i> <span
                 class="text">Logout</span></a></li>
     </ul>
 </div>
@@ -66,17 +66,17 @@
 
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-th"></i>Tables</a>
     <ul>
-        <li class="active"><a href="seeCourse.html"><i class="icon icon-home"></i> <span>查看课程</span></a></li>
+        <li><a href="seeCourse.php"><i class="icon icon-home"></i> <span>查看课程</span></a></li>
         <li><a href="addCourse.html"><i class="icon icon-signal"></i> <span>添加课程</span></a></li>
-        <li><a href="checkStudentInfo.html"><i class="icon icon-inbox"></i> <span>查看学生信息</span></a></li>
+        <li class="active"><a href="checkStudentInfo.php"><i class="icon icon-inbox"></i> <span>查看学生信息</span></a></li>
         <li><a href="switchManage.html"><i class="icon icon-th"></i> <span>入口管理</span></a></li>
     </ul>
 </div>
 <div id="content">
     <div id="content-header">
         <div id="breadcrumb"><a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a
-                href="#" class="current">查看课程</a></div>
-        <h1>查看课程</h1>
+                href="#" class="current">查看学生课程信息</a></div>
+        <h1>查看学生课程信息</h1>
     </div>
     <div class="container-fluid">
         <hr>
@@ -84,44 +84,66 @@
             <div class="span12">
                 <div class="widget-box">
                     <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
-                        <h5>查看课程</h5>
+                        <h5>查看学生选课信息</h5>
                     </div>
                     <div class="widget-content nopadding">
                         <table class="table table-bordered data-table">
                             <thead>
                             <tr>
-                                <th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox" /></th>
-                                <th>课程名</th>
-                                <th>课程号</th>
-                                <th>课序号</th>
-                                <th>教师姓名</th>
-                                <th>教室</th>
-                                <th>上课时间</th>
-                                <th>学分</th>
-                                <th>必/选修</th>
+                                <th>姓名</th>
+                                <th>学号</th>
+                                <th>学院</th>
+                                <th>专业</th>
+                                <th>班级</th>
+                                <th>本学期学分</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="gradeX">
-                                <td><input type="checkbox" /></td>
-                                <td>数据库</td>
-                                <td>11100022</td>
-                                <td>03</td>
-                                <td>大定</td>
-                                <td>一教A102</td>
-                                <td>10:15-12:00</td>
-                                <td>2</td>
-                                <td>必修</td>
-                                <td class="taskOptions">
-                                    <a class="tip" href="#" title="编辑">
-                                        <i class="icon-edit"></i>
-                                    </a>
-                                    <a href="#" class="tip-top" data-original-title="删除">
-                                        <i class="icon-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            <?php
+                            require 'mysqlConfig.php';
+                            $sql = "select * from student_info";
+                            $result = mysqli_query($conn,$sql);
+                            if(mysqli_num_rows($result) == 0){
+                                echo "
+                                    <tr class=\"gradeX\">
+                                        <td>没有数据被查询到</td>
+                                    </tr>
+                                ";
+                            }
+                            else{
+                                while($row = mysqli_fetch_assoc($result)){
+                                    echo '
+                                        <tr class="gradeX">
+                                            <td>'.$row["name"].'</td>
+                                            <td>'.$row["stuNo"].'</td>
+                                            <td>'.$row["college"].'</td>
+                                            <td>'.$row["major"].'</td>
+                                            <td>'.$row["classNo"].'</td>
+                                            <td>'.$row["totalGrade"].'</td>
+                                            <td class="taskOptions">
+                                                <a class="tip" href="#" title="查看详情">
+                                                    <i class="icon-search"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    ';
+                                }
+                            }
+                            ?>
+<!--                            <tr class="gradeX">-->
+<!--                                <td>大定</td>-->
+<!--                                <td>1110222</td>-->
+<!--                                <td>计算机学院</td>-->
+<!--                                <td>计算机科学与技术</td>-->
+<!--                                <td>3</td>-->
+<!--                                <td>24</td>-->
+<!--                                <td class="taskOptions">-->
+<!--                                    <a class="tip" href="#" title="查看详情">-->
+<!--                                        <i class="icon-search"></i>-->
+<!--                                    </a>-->
+<!--                                </td>-->
+<!--                            </tr>-->
                             </tbody>
                         </table>
                     </div>
