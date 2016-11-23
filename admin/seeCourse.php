@@ -69,7 +69,7 @@
         <li class="active"><a href="seeCourse.html"><i class="icon icon-home"></i> <span>查看课程</span></a></li>
         <li><a href="addCourse.html"><i class="icon icon-signal"></i> <span>添加课程</span></a></li>
         <li><a href="checkStudentInfo.php"><i class="icon icon-inbox"></i> <span>查看学生信息</span></a></li>
-        <li><a href="switchManage.html"><i class="icon icon-th"></i> <span>入口管理</span></a></li>
+        <li><a href="switchManage.php"><i class="icon icon-th"></i> <span>入口管理</span></a></li>
     </ul>
 </div>
 <div id="content">

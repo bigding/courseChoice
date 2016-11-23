@@ -69,7 +69,7 @@
         <li><a href="seeCourse.php"><i class="icon icon-home"></i> <span>查看课程</span></a></li>
         <li><a href="addCourse.html"><i class="icon icon-signal"></i> <span>添加课程</span></a></li>
         <li><a href="checkStudentInfo.php"><i class="icon icon-inbox"></i> <span>查看学生信息</span></a></li>
-        <li class="active"><a href="switchManage.html"><i class="icon icon-th"></i> <span>入口管理</span></a></li>
+        <li class="active"><a href="switchManage.php"><i class="icon icon-th"></i> <span>入口管理</span></a></li>
     </ul>
 </div>
 <div id="content">
@@ -96,14 +96,53 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <?php
+                            require 'mysqlConfig.php';
+                            $sql = 'select * from switch';
+                            $result = mysqli_query($conn,$sql);
+                            if(mysqli_num_rows($result) > 0){
+                                while($row = mysqli_fetch_assoc($result)){
+                                    echo "  
+                                        <tr class=\"odd gradeX\">
+                                            <td>".$row['switchName']."</td>
+                                            <td>";
+                                    if($row['status'] == 0){
+                                        echo "系统关闭
+                                        </td>
+                                            <td>
+                                                <a href=\"opSwitchManage.php?typeid=".$row['typeId']."&operation=1\" class=\"tip-top\" data-original-title=\"开启系统\">
+                                                    <i class=\"icon-eye-open\"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        ";
+                                    }
+                                    else{
+                                        echo "系统开启
+                                        </td>
+                                            <td>
+                                                <a href=\"opSwitchManage.php?typeid=".$row['typeId']."&operation=0\" class=\"tip-top\" data-original-title=\"关闭系统\">
+                                                    <i class=\"icon-eye-close\"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        ";
+                                    }
+                                }
+                            }
+                            else{
+                                echo "无开关存在";
+                            }
+
+                            ?>
                             <tr class="odd gradeX">
                                 <td>选课系统</td>
                                 <td>关闭</td>
                                 <td>
-                                    <a href="#" class="tip-top" data-original-title="开启系统">
+                                    <a href="opSwitchManage.php?typeid=1&operation=1" class="tip-top" data-original-title="开启系统">
                                         <i class="icon-eye-open"></i>
                                     </a>
-                                    <a href="#" class="tip-top" data-original-title="关闭系统">
+                                    <a href="opSwitchManage.php?typeid=1&operation=0" class="tip-top" data-original-title="关闭系统">
                                         <i class="icon-eye-close"></i>
                                     </a>
                                 </td>
