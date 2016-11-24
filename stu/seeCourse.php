@@ -27,18 +27,18 @@
     <ul class="nav">
         <li class="dropdown" id="profile-messages"><a title="" href="#" data-toggle="dropdown"
                                                       data-target="#profile-messages" class="dropdown-toggle"><i
-                class="icon icon-user"></i> <span class="text">Welcome User</span><b class="caret"></b></a>
+                    class="icon icon-user"></i> <span class="text">Welcome User</span><b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
                 <li class="divider"></li>
                 <li><a href="#"><i class="icon-check"></i> My Tasks</a></li>
                 <li class="divider"></li>
-                <li><a href="seeCourse.html"><i class="icon-key"></i> Log Out</a></li>
+                <li><a href="seeCourse.php"><i class="icon-key"></i> Log Out</a></li>
             </ul>
         </li>
         <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages"
                                                    class="dropdown-toggle"><i class="icon icon-envelope"></i> <span
-                class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+                    class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i> new message</a></li>
                 <li class="divider"></li>
@@ -50,8 +50,8 @@
             </ul>
         </li>
         <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
-        <li class=""><a title="" href="seeCourse.html"><i class="icon icon-share-alt"></i> <span
-                class="text">Logout</span></a></li>
+        <li class=""><a title="" href="seeCourse.php"><i class="icon icon-share-alt"></i> <span
+                    class="text">Logout</span></a></li>
     </ul>
 </div>
 
@@ -67,7 +67,7 @@
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-th"></i>Tables</a>
     <ul>
         <li><a href="information.html"><i class="icon icon-signal"></i> <span>公告</span></a></li>
-        <li class="active"><a href="seeCourse.html"><i class="icon icon-home"></i> <span>查看课程</span></a></li>
+        <li class="active"><a href="seeCourse.php"><i class="icon icon-home"></i> <span>查看课程</span></a></li>
         <li><a href="chooseCourseBySearch.html"><i class="icon icon-signal"></i> <span>选择课程</span></a></li>
         <li><a href="judgeTeacher.html"><i class="icon icon-inbox"></i> <span>评价</span></a></li>
         <li><a href="studentCourseTable.html"><i class="icon icon-th"></i> <span>课程表</span></a></li>
@@ -92,7 +92,7 @@
                         <table class="table table-bordered data-table">
                             <thead>
                             <tr>
-                                <th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox" /></th>
+                                <th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
                                 <th>课程名</th>
                                 <th>课程号</th>
                                 <th>课序号</th>
@@ -105,25 +105,42 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="gradeX">
-                                <td><input type="checkbox" /></td>
-                                <td>数据库</td>
-                                <td>11100022</td>
-                                <td>03</td>
-                                <td>大定</td>
-                                <td>一教A102</td>
-                                <td>10:15-12:00</td>
-                                <td>2</td>
-                                <td>必修</td>
-                                <td class="taskOptions">
-                                    <a class="tip" href="#" title="编辑">
-                                        <i class="icon-edit"></i>
-                                    </a>
-                                    <a href="#" class="tip-top" data-original-title="删除">
-                                        <i class="icon-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            <?php
+                            require "mysqlConfig.php";
+
+                            $sql = 'select * from course_info';
+                            $result = mysqli_query($conn, $sql);
+                            if (mysqli_num_rows($result) == 0) {
+                                echo "
+                                <tr class=\"gradeX\">
+                                    <td>没有查询结果</td>
+                                </tr>
+                                ";
+                            } else {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "
+                                    <tr class=\"gradeX\">
+                                        <td><input type=\"checkbox\" /></td>
+                                        <td>" . $row['courseName'] . "</td>
+                                        <td>" . $row['courseNo'] . "</td>
+                                        <td>" . $row['courseSeqNo'] . "</td>
+                                        <td>" . $row['teacherName'] . "</td>
+                                        <td>" . $row['classroom'] . "</td>
+                                        <td>" . $row['courseTime'] . "</td>
+                                        <td>" . $row['grade'] . "</td>
+                                        <td>" . $row['essential'] . "</td>
+                                        <td class=\"taskOptions\">
+                                            <a class=\"tip\" href=\"#\" title=\"添加\">
+                                                <i class=\"icon-edit\"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    ";
+                                }
+                            }
+                            ?>
+
+
                             </tbody>
                         </table>
                     </div>

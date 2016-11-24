@@ -11,7 +11,6 @@
 	<link rel="stylesheet" href="../css/select2.css" />
 	<link rel="stylesheet" href="../css/matrix-style.css" />
 	<link rel="stylesheet" href="../css/matrix-media.css" />
-    <link rel="stylesheet" href="../css/search.css" />
 	<link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/seeCouese.css">
@@ -51,7 +50,7 @@
 				</ul>
 			</li>
 			<li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
-			<li class=""><a title="" href="seeCourse.html"><i class="icon icon-share-alt"></i> <span
+			<li class=""><a title="" href="seeCourse.php"><i class="icon icon-share-alt"></i> <span
                 class="text">Logout</span></a></li>
 		</ul>
 	</div>
@@ -69,7 +68,7 @@
 	<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-th"></i>Tables</a>
 		<ul>
 			<li><a href="information.html"><i class="icon icon-signal"></i> <span>公告</span></a></li>
-			<li><a href="seeCourse.html"><i class="icon icon-home"></i> <span>查看课程</span></a></li>
+			<li><a href="seeCourse.php"><i class="icon icon-home"></i> <span>查看课程</span></a></li>
 			<li class="active"><a href="chooseCourseBySearch.html"><i class="icon icon-signal"></i> <span>选择课程</span></a></li>
 			<li><a href="judgeTeacher.html"><i class="icon icon-inbox"></i> <span>评价</span></a></li>
 			<li><a href="studentCourseTable.html"><i class="icon icon-th"></i> <span>课程表</span></a></li>
@@ -77,63 +76,92 @@
 	</div>
 
 
-<div id="content">
-   		<div class="container-fluid">
-    
-            <div class="well-searchbox">
-                <form class="form-horizontal" role="form">
-                   
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">课程名字</label>
-                        <div class="col-md-8">
-                            <select class="form-control" placeholder="Country">
-                                <option value="">数据结构</option>
-                                <option value="">软件工程</option>
-                                <option value="">数据库</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">课程号</label>
-                        <div class="col-md-8">
-                            <select class="form-control" placeholder="Province">
-                                <option value="">111</option>
-                                <option value="">112</option>
-                                <option value="">113</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">课序号</label>
-                        <div class="col-md-8">
-                            <select class="form-control" placeholder="City">
-                                <option value="">01</option>
-                                <option value="">02</option>
-                                <option value="">03</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">老师名字</label>
-                        <div class="col-md-8">
-                            <select class="form-control" placeholder="Category">
-                                <option value="">大定</option>
-                                <option value="">张三</option>
-                                <option value="">李四</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-offset-4 col-sm-5">
-                        <button type="submit" class="btn btn-success">Search</button>
-                    </div>
-                </form>
-            </div>
-</div>
-</div>
+	<div id="content">
+		<div id="content-header">
+			<div id="breadcrumb"><a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a
+					href="#" class="current">选择课程</a></div>
+			<h1>选择课程</h1>
+		</div>
+		<div class="container-fluid">
+			<hr>
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="widget-box">
+						<div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
+							<h5>选择课程</h5>
+						</div>
+						<div class="widget-content nopadding">
+							<form class="form-horizontal" method="post" action="addCourse.php" name="basic_validate" id="basic_validate" novalidate="novalidate">
+								<div class="control-group">
+									<label class="control-label">课程名</label>
+									<div class="controls">
+										<input type="text" name="courseName" id="courseName">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">课程号</label>
+									<div class="controls">
+										<input type="text" name="courseNumber" id="courseNumber">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">课序号</label>
+									<div class="controls">
+										<input type="text" name="courseSeqNumber" id="courseSeqNumber">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">教师姓名</label>
+									<div class="controls">
+										<input type="text" name="teacherName" id="teacherName">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">上课时间</label>
+									<div class="controls">
+										<select name="date">
+											<option value="0">无要求</option>
+											<option value="1">周一</option>
+											<option value="2">周二</option>
+											<option value="3">周三</option>
+											<option value="4">周四</option>
+											<option value="5">周五</option>
+											<option value="6">周六</option>
+											<option value="7">周日</option>
+										</select>
+										<select name="time">
+											<option value="0">无要求</option>
+											<option value="1">早上1-2节</option>
+											<option value="2">早上3-4节</option>
+											<option value="3">下午5-6节</option>
+											<option value="4">下午7-9节</option>
+											<option value="5">晚上10-12节</option>
+										</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">必/选修</label>
+									<div class="controls">
+										<label>
+											<input type="radio" name="essential" value="1"/>
+											必修
+										</label>
+										<label>
+											<input type="radio" name="essential" value="0"/>
+											选修
+										</label>
+									</div>
+								</div>
+								<div class="form-actions">
+									<input type="submit" value="搜索" class="btn btn-success">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 	<!--Footer-part-->
@@ -147,9 +175,8 @@
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/jquery.uniform.js"></script>
 	<script src="../js/select2.min.js"></script>
-	<script src="../js/jquery.dataTables.min.js"></script>
+	<script src="../js/jquery.validate.js"></script>
 	<script src="../js/matrix.js"></script>
-	<script src="../js/matrix.tables.js"></script>
 </body>
 
 </html>
