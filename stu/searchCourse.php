@@ -16,64 +16,9 @@
 </head>
 <body>
 
-<!--Header-part-->
-<div id="header">
-    <h1><a href="dashboard.html">courseChoice</a></h1>
-</div>
-<!--close-Header-part-->
-
-<!--top-Header-menu-->
-<div id="user-nav" class="navbar navbar-inverse">
-    <ul class="nav">
-        <li class="dropdown" id="profile-messages"><a title="" href="#" data-toggle="dropdown"
-                                                      data-target="#profile-messages" class="dropdown-toggle"><i
-                    class="icon icon-user"></i> <span class="text">Welcome User</span><b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
-                <li class="divider"></li>
-                <li><a href="#"><i class="icon-check"></i> My Tasks</a></li>
-                <li class="divider"></li>
-                <li><a href="seeCourse.php"><i class="icon-key"></i> Log Out</a></li>
-            </ul>
-        </li>
-        <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages"
-                                                   class="dropdown-toggle"><i class="icon icon-envelope"></i> <span
-                    class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i> new message</a></li>
-                <li class="divider"></li>
-                <li><a class="sInbox" title="" href="#"><i class="icon-envelope"></i> inbox</a></li>
-                <li class="divider"></li>
-                <li><a class="sOutbox" title="" href="#"><i class="icon-arrow-up"></i> outbox</a></li>
-                <li class="divider"></li>
-                <li><a class="sTrash" title="" href="#"><i class="icon-trash"></i> trash</a></li>
-            </ul>
-        </li>
-        <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
-        <li class=""><a title="" href="seeCourse.php"><i class="icon icon-share-alt"></i> <span
-                    class="text">Logout</span></a></li>
-    </ul>
-</div>
-
-<!--start-top-serch-->
-<div id="search">
-    <input type="text" placeholder="Search here..."/>
-    <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
-</div>
-<!--close-top-serch-->
-
-<!--sidebar-menu-->
-
-<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-th"></i>Tables</a>
-    <ul>
-        <li><a href="information.html"><i class="icon icon-signal"></i> <span>公告</span></a></li>
-        <li><a href="seeCourse.php"><i class="icon icon-home"></i> <span>查看课程</span></a></li>
-        <li class="active"><a href="chooseCourseBySearch.html"><i class="icon icon-signal"></i> <span>选择课程</span></a>
-        </li>
-        <li><a href="judgeTeacher.html"><i class="icon icon-inbox"></i> <span>评价</span></a></li>
-        <li><a href="studentCourseTable.html"><i class="icon icon-th"></i> <span>课程表</span></a></li>
-    </ul>
-</div>
+<?php
+require "header.php";
+?>
 
 <div id="content">
     <div id="content-header">
@@ -90,81 +35,112 @@
                         <h5>查看课程</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <?php
-                        $courseName = HTMLSpecialchars(trim($_POST["courseName"]));
-                        $courseNumber = HTMLSpecialchars(trim($_POST["courseNumber"]));
-                        $courseSeqNumber = HTMLSpecialchars(trim($_POST["courseSeqNumber"]));
-                        $teacherName = HTMLSpecialchars(trim($_POST["teacherName"]));
-                        $courseDate = HTMLSpecialchars(trim($_POST["date"]));
-                        $courseTime = HTMLSpecialchars(trim($_POST["time"]));
-                        $essential = HTMLSpecialchars(trim($_POST["essential"]));
-                        require "mysqlConfig.php";
+                        <table class="table table-bordered data-table">
+                            <?php
+                            $courseName = HTMLSpecialchars(trim($_POST["courseName"]));
+                            $courseNumber = HTMLSpecialchars(trim($_POST["courseNumber"]));
+                            $courseSeqNumber = HTMLSpecialchars(trim($_POST["courseSeqNumber"]));
+                            $teacherName = HTMLSpecialchars(trim($_POST["teacherName"]));
+                            $courseDate = HTMLSpecialchars(trim($_POST["date"]));
+                            $courseTime = HTMLSpecialchars(trim($_POST["time"]));
 
-                        $sql = "select * from course_info where courseName = '$courseName' and ";
-                        $result = mysqli_query($conn, $sql);
-                        if (mysqli_num_rows($result) == 0) {
-                            echo "
+                            $where = "";
+                            if ($courseName != "") {
+                                if ($where == "" || empty($where)) {
+                                    $where = 'courseName = "' . $courseName . '" ';
+                                } else {
+                                    $where = $where . 'and ' . 'courseName = "' . $courseName . '" ';
+                                }
+                            }
+                            if ($courseNumber != "") {
+                                if ($where == "") {
+                                    $where = 'courseNo = "' . $courseNumber . '" ';
+                                } else {
+                                    $where = $where . 'and ' . 'courseNo = "' . $courseNumber . '" ';
+                                }
+
+                            }
+                            if ($courseSeqNumber != "") {
+                                if ($where == "") {
+                                    $where = 'courseSeqNo = "' . $courseSeqNo . '" ';
+                                } else {
+                                    $where = $where . 'and ' . 'courseSeqNo = "' . $courseSeqNo . '" ';
+                                }
+                            }
+                            if ($teacherName != "") {
+                                if ($where == "") {
+                                    $where = 'teacherName = "' . $teacherName . '" ';
+                                } else {
+                                    $where = $where . 'and ' . 'teacherName = "' . $teacherName . '" ';
+                                }
+                            }
+
+                            /*当检索条件（除去时间部分）为空时*/
+                            if($where == "" && ($courseDate == 0 && $courseTime == 0)){
+                                echo "
+                                <tr class=\"gradeX\">
+                                    <td>请选择查询条件</td>
+                                </tr>
+                                ";
+                            }
+                            /*当检索条件不为空时，还需在其中检测时间这一条件*/
+                            else{
+                                require "mysqlConfig.php";
+
+                                $sql = "select * from course_info where $where";
+                                $result = mysqli_query($conn, $sql);
+
+                                if (mysqli_num_rows($result) == 0) {
+                                    echo "
                                 <tr class=\"gradeX\">
                                     <td>没有查询结果</td>
                                 </tr>
                                 ";
-                        } else {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo "
-                                    <tr class=\"gradeX\">
-                                        <td><input type=\"checkbox\" /></td>
-                                        <td>" . $row['courseName'] . "</td>
-                                        <td>" . $row['courseNo'] . "</td>
-                                        <td>" . $row['courseSeqNo'] . "</td>
-                                        <td>" . $row['teacherName'] . "</td>
-                                        <td>" . $row['classroom'] . "</td>
-                                        <td>" . $row['courseTime'] . "</td>
-                                        <td>" . $row['grade'] . "</td>
-                                        <td>" . $row['essential'] . "</td>
-                                        <td class=\"taskOptions\">
-                                            <a class=\"tip\" href=\"#\" title=\"添加\">
-                                                <i class=\"icon-edit\"></i>
-                                            </a>
-                                        </td>
+                                } else {
+                                    echo "
+                                    <thead>
+                                    <tr>
+                                        <th><input type=\"checkbox\" id=\"title-table-checkbox\" name=\"title-table-checkbox\"/></th>
+                                        <th>课程名</th>
+                                        <th>课程号</th>
+                                        <th>课序号</th>
+                                        <th>教师姓名</th>
+                                        <th>教室</th>
+                                        <th>上课时间</th>
+                                        <th>学分</th>
+                                        <th>必/选修</th>
+                                        <th>操作</th>
                                     </tr>
-                                    ";
+                                    </thead>
+                                    <tbody>
+                            ";
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo "
+                                <tr class=\"gradeX\">
+                                    <td><input type=\"checkbox\" /></td>
+                                    <td>" . $row['courseName'] . "</td>
+                                    <td>" . $row['courseNo'] . "</td>
+                                    <td>" . $row['courseSeqNo'] . "</td>
+                                    <td>" . $row['teacherName'] . "</td>
+                                    <td>" . $row['classroom'] . "</td>
+                                    <td>" . $row['courseTime'] . "</td>
+                                    <td>" . $row['grade'] . "</td>
+                                    <td>" . $row['essential'] . "</td>
+                                    <td class=\"taskOptions\">
+                                        <a class=\"tip\" href=\"#\" title=\"添加\">
+                                            <i class=\"icon-edit\"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                ";
+                                    }
+                                    echo "</tbody>";
+                                }
                             }
-                        }
-                        ?>
 
-                        <table class="table table-bordered data-table">
-                            <thead>
-                            <tr>
-                                <th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-                                <th>课程名</th>
-                                <th>课程号</th>
-                                <th>课序号</th>
-                                <th>教师姓名</th>
-                                <th>教室</th>
-                                <th>上课时间</th>
-                                <th>学分</th>
-                                <th>必/选修</th>
-                                <th>操作</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class=\"gradeX\">
-                                <td><input type=\"checkbox\"/></td>
-                                <td>" . $row['courseName'] . "</td>
-                                <td>" . $row['courseNo'] . "</td>
-                                <td>" . $row['courseSeqNo'] . "</td>
-                                <td>" . $row['teacherName'] . "</td>
-                                <td>" . $row['classroom'] . "</td>
-                                <td>" . $row['courseTime'] . "</td>
-                                <td>" . $row['grade'] . "</td>
-                                <td>" . $row['essential'] . "</td>
-                                <td class=\"taskOptions\">
-                                    <a class=\"tip\" href=\"#\" title=\"添加\">
-                                        <i class=\"icon-edit\"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            </tbody>
+                            ?>
+
+
                         </table>
                     </div>
                 </div>
