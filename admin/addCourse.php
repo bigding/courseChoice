@@ -140,7 +140,7 @@ require "header.php";
                                 <label class="control-label">必/选修</label>
                                 <div class="controls">
                                     <label>
-                                        <input type="radio" name="essential" value="1"/>
+                                        <input type="radio" name="essential" value="1" checked/>
                                         必修
                                     </label>
                                     <label>

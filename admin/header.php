@@ -49,7 +49,7 @@
 
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-th"></i>Tables</a>
     <ul>
-        <li><a href="seeCourse.html"><i class="icon icon-home"></i> <span>查看课程</span></a></li>
+        <li><a href="seeCourse.php"><i class="icon icon-home"></i> <span>查看课程</span></a></li>
         <li><a href="addCourse.php"><i class="icon icon-signal"></i> <span>添加课程</span></a></li>
         <li><a href="checkStudentInfo.php"><i class="icon icon-inbox"></i> <span>查看学生信息</span></a></li>
         <li><a href="switchManage.php"><i class="icon icon-th"></i> <span>入口管理</span></a></li>
