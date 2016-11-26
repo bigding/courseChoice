@@ -127,7 +127,7 @@ require "header.php";
                                     <td>" . $row['grade'] . "</td>
                                     <td>" . $row['essential'] . "</td>
                                     <td class=\"taskOptions\">
-                                        <a class=\"tip\" href=\"#\" title=\"添加\">
+                                        <a class=\"tip\" href=\"opAddCourse.php?courseNo=".$row['courseNo']."&courseSeqNo=".$row['courseSeqNo']."\" title=\"添加\">
                                             <i class=\"icon-edit\"></i>
                                         </a>
                                     </td>

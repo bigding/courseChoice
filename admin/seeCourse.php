@@ -62,7 +62,13 @@ require "header.php";
                             }
                             else{
                                 while($row = mysqli_fetch_assoc($result)){
+                                    $roomTmp = explode(":",$row["classroom"]);
+                                    $room = implode($roomTmp);
 
+                                    $classTimeTmp = explode(":",$row["courseTime"]);
+                                    $week = array("星期一","星期二","星期三","星期四","星期五","星期六","星期日");
+                                    $timeBlock = array("8:15-9:55","10:15-11:50","13:50-16:25","16:45-18:20","19:20-21:50");
+                                    $classTime = $week[$classTimeTmp[0] - 1]." ".$timeBlock[$classTimeTmp[1]-1];
                                     echo "
                                     <tr class=\"gradeX\">
                                         <td><input type=\"checkbox\" /></td>
@@ -70,8 +76,8 @@ require "header.php";
                                         <td>".$row['courseNo']."</td>
                                         <td>".$row['courseSeqNo']."</td>
                                         <td>".$row['teacherName']."</td>
-                                        <td>".$row['classroom']."</td>
-                                        <td>".$row['courseTime']."</td>
+                                        <td>" . $room. "</td>
+                                        <td>" . $classTime . "</td>
                                         <td>".$row['grade']."</td>
                                         <td>".$row['essential']."</td>
                                         <td class=\"taskOptions\">
@@ -86,27 +92,6 @@ require "header.php";
                                     ";
                                 }
                             }
-//                            echo "
-//                                <tr class=\"gradeX\">
-//                                    <td><input type=\"checkbox\" /></td>
-//                                    <td>数据库</td>
-//                                    <td>11100022</td>
-//                                    <td>03</td>
-//                                    <td>大定</td>
-//                                    <td>一教A102</td>
-//                                    <td>10:15-12:00</td>
-//                                    <td>2</td>
-//                                    <td>必修</td>
-//                                    <td class=\"taskOptions\">
-//                                        <a class=\"tip\" href=\"#\" title=\"编辑\">
-//                                            <i class=\"icon-edit\"></i>
-//                                        </a>
-//                                        <a href=\"#\" class=\"tip-top\" data-original-title=\"删除\">
-//                                            <i class=\"icon-trash\"></i>
-//                                        </a>
-//                                    </td>
-//                                </tr>
-//                                ";
                             ?>
                             </tbody>
                         </table>

@@ -81,18 +81,6 @@
                             }
 
                             ?>
-                            <tr class="odd gradeX">
-                                <td>选课系统</td>
-                                <td>关闭</td>
-                                <td>
-                                    <a href="opSwitchManage.php?typeid=1&operation=1" class="tip-top" data-original-title="开启系统">
-                                        <i class="icon-eye-open"></i>
-                                    </a>
-                                    <a href="opSwitchManage.php?typeid=1&operation=0" class="tip-top" data-original-title="关闭系统">
-                                        <i class="icon-eye-close"></i>
-                                    </a>
-                                </td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
