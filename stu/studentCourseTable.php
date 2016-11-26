@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,70 +37,60 @@ require "header.php";
                     </div>
                     <div class="widget-content nopadding">
                         <table class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th>上课时间</th>
-                                <th>周一</th>
-                                <th>周二</th>
-                                <th>周三</th>
-                                <th>周四</th>
-                                <th>周五</th>
-                                <th>周六</th>
-                                <th>周日</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="odd gradeX">
-                                <td>8:15-9:55</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td>10:15-11:50</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td>13:50-16:25</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td>16:45-18:20</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td>19:20-21:50</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            </tbody>
+                            <?php
+                            $stuNo = $_SESSION['stuNo'];
+                            require  'mysqlConfig.php';
+
+                            $sql1 = "select * from course_info,choice_info where course_info.courseNo = choice_info.courseNo  and course_info.courseSeqNo = choice_info.courseSeqNo  and choice_info.stuNo = '$stuNo'";
+//                            echo $sql1;
+                            $result1 = mysqli_query($conn,$sql1);
+//                            print_r($result1);
+                            if(mysqli_num_rows($result1) == 0){
+                                echo "查询课表信息失败，请重新查询";
+                            }
+                            else{
+                                echo "
+                                <thead>
+                                    <tr>
+                                        <th>上课时间</th>
+                                        <th>周一</th>
+                                        <th>周二</th>
+                                        <th>周三</th>
+                                        <th>周四</th>
+                                        <th>周五</th>
+                                        <th>周六</th>
+                                        <th>周日</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                ";
+                                $classTime = array("8:15-9:55","10:15-11:50","13:50-16:25","16:45-18:20","19:20-21:50");
+                                $classInfo =  array(
+                                    array('','','','','','',''),
+                                    array('','','','','','',''),
+                                    array('','','','','','',''),
+                                    array('','','','','','',''),
+                                    array('','','','','','','')
+                                );
+                                while($row1 = mysqli_fetch_array($result1)){
+                                    $classroom = implode(explode(':',$row1['classroom']));
+                                    $courseName = $row1['courseName'];
+                                    $teacherName = $row1['teacherName'];
+                                    $courseTime = explode(":",$row1["courseTime"]);
+                                    $classInfo[$courseTime[1]-1][$courseTime[0]-1] = $courseName."<br/>".$classroom." ".$teacherName;
+                                }
+                                for($i = 0; $i < 5; $i++){
+                                    echo '<tr class="odd gradeX">';
+                                    echo '<td>'.$classTime[$i].'</td>';
+                                    for($j = 0; $j < 7; $j++){
+                                        echo "<td>".$classInfo[$i][$j]."</td>";
+                                    }
+                                    echo "</tr>";
+                                }
+                                echo "</tbody>";
+                            }
+
+                            ?>
                         </table>
                     </div>
                 </div>
