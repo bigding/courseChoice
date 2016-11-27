@@ -69,7 +69,7 @@ require "header.php";
                                             <td>'.$row["classNo"].'</td>
                                             <td>'.$row["totalGrade"].'</td>
                                             <td class="taskOptions">
-                                                <a class="tip" href="#" title="查看详情">
+                                                <a class="tip" href="studentCourseTable.php?stuNo='.$row['stuNo'].'&stuName='.$row['name'].'" title="查看详情">
                                                     <i class="icon-search"></i>
                                                 </a>
                                             </td>
