@@ -51,7 +51,8 @@ require "header.php";
                             <tbody>
                             <?php
                             require "mysqlConfig.php";
-                            $sql = "select * from course_info";
+                            $sql = "select * from course_info';
+";
                             $result = mysqli_query($conn,$sql);
                             if(mysqli_num_rows($result) == 0){
                                 echo "
