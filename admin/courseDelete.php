@@ -1,4 +1,6 @@
 <?php
+session_start();
+require 'isLogin.php';
 $courseId = $_GET['id'];
 require 'mysqlConfig.php';
 $sql1 = "select courseNo,courseSeqNo from course_info where id='$courseId'";

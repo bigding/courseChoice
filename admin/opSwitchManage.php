@@ -1,4 +1,6 @@
 <?php
+session_start();
+require 'isLogin.php';
 $typeid = $_GET['typeid'];  /*此处为数据库中type的值*/
 $operate = $_GET['operation'];  /*此处operation的值为1时是开启，为0时是关闭*/
 

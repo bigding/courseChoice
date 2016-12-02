@@ -1,4 +1,6 @@
 <?php
+session_start();
+require 'isLogin.php';
 $courseId = $_POST['id'];
 $courseName = HTMLSpecialchars(trim($_POST["courseName"]));
 $courseNumber = HTMLSpecialchars(trim($_POST["courseNumber"]));

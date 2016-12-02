@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +19,7 @@
 </head>
 <body>
 <?php
+require 'isLogin.php';
 require "header.php";
 ?>
 <div id="content">
