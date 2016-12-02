@@ -3,14 +3,15 @@ session_start();
 $_SESSION["pageuser"] = "";
 $_SESSION["stuNo"] = "";
 $stuNo = $_POST["stuNo"];
-$password = $_POST["password"];
+$stuPassword = $_POST["password"];
 
 /*此处验证学号的正确性并进行处理*/
 $stuNo = trim(HTMLSpecialchars($stuNo));
-$password = trim(HTMLSpecialchars($password));
+$stuPassword = trim(HTMLSpecialchars($stuPassword));
 
 require "mysqlConfig.php";
-$sql = "select name from student_info WHERE stuNo= '$stuNo' and password = '$password'";
+$sql = "select name from student_info WHERE stuNo= '$stuNo' and password = '$stuPassword'";
+echo $sql;
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) == 0) {
     die("不存在此用户，请重新输入信息确认");

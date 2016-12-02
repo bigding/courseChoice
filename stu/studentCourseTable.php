@@ -45,7 +45,7 @@ require "header.php";
                             $sql1 = "select * from course_info,choice_info where course_info.courseNo = choice_info.courseNo  and course_info.courseSeqNo = choice_info.courseSeqNo  and choice_info.stuNo = '$stuNo'";
                             //                            echo $sql1;
                             $result1 = mysqli_query($conn, $sql1);
-                            //                            print_r($result1);
+//                                                        print_r($result1);
                             if (!$result1) {
                                 echo "查询课表信息失败，请重新查询";
                             } else {

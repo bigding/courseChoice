@@ -87,10 +87,10 @@ require "header.php";
                                         <td>".$row['grade']."</td>
                                         <td>".$essential[$row['essential']]."</td>
                                         <td class=\"taskOptions\">
-                                            <a class=\"tip\" href='courseEdit.php?id=".$row['Id']."' title=\"编辑\">
+                                            <a class=\"tip\" href='courseEdit.php?id=".$row['id']."' title=\"编辑\">
                                                 <i class=\"icon-edit\"></i>
                                             </a>
-                                            <a href='courseDelete.php?id=".$row['Id']."' class=\"tip-top\" data-original-title=\"删除\">
+                                            <a href='courseDelete.php?id=".$row['id']."' class=\"tip-top\" data-original-title=\"删除\">
                                                 <i class=\"icon-trash\"></i>
                                             </a>
                                         </td>

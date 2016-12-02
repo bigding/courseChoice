@@ -65,7 +65,10 @@ require "header.php";
                                     <td>没有查询结果</td>
                                 </tr>
                                 ";
-                            } else {
+
+                                echo mysqli_error($conn);
+                            }
+                            else {
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     $roomTmp = explode(":",$row["classroom"]);
                                     $room = implode($roomTmp);
@@ -95,7 +98,7 @@ require "header.php";
                                     ";
                                 }
                             }
-                            ?>
+//                            ?>
 
 
                             </tbody>
