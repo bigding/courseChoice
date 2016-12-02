@@ -22,8 +22,7 @@ if (mysqli_num_rows($result1) == 0) {
                   where course_info.courseNo = choice_info.courseNo and
                   course_info.courseSeqNo = choice_info.courseSeqNo and
                   choice_info.stuNo = '$pageUserNo' and
-                  course_info.courseTime = '$courseTime' and 
-                  course_info.classroom = '$classroom'";
+                  course_info.courseTime = '$courseTime'";
         $result2 = mysqli_query($conn, $sql2);
         if (mysqli_num_rows($result2) > 0) {
             while ($row2 = mysqli_fetch_array($result2)) {

@@ -70,6 +70,7 @@ require "header.php";
                                     $week = array("星期一","星期二","星期三","星期四","星期五","星期六","星期日");
                                     $timeBlock = array("8:15-9:55","10:15-11:50","13:50-16:25","16:45-18:20","19:20-21:50");
                                     $classTime = $week[$classTimeTmp[0] - 1]." ".$timeBlock[$classTimeTmp[1]-1];
+                                    $essential = array("选修","必修");
                                     echo "
                                     <tr class=\"gradeX\">
                                         <td><input type=\"checkbox\" /></td>
@@ -80,7 +81,7 @@ require "header.php";
                                         <td>" . $room. "</td>
                                         <td>" . $classTime . "</td>
                                         <td>" . $row['grade'] . "</td>
-                                        <td>" . $row['essential'] . "</td>
+                                        <td>" . $essential[$row['essential']] . "</td>
                                         <td class=\"taskOptions\">
                                             <a class=\"tip\" href=\"opAddCourse.php?courseNo=".$row['courseNo']."&courseSeqNo=".$row['courseSeqNo']."\" title=\"添加\">
                                                 <i class=\"icon-edit\"></i>
