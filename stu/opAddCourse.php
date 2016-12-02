@@ -1,5 +1,6 @@
 <?php
 session_start();
+require 'isLogin.php';
 $courseNo = $_GET['courseNo'];
 $courseSeqNo = $_GET['courseSeqNo'];
 $pageUserNo = $_SESSION['stuNo'];

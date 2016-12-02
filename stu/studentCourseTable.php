@@ -19,6 +19,7 @@ session_start();
 </head>
 <body>
 <?php
+require 'isLogin.php';
 require "header.php";
 ?>
 <div id="content">
