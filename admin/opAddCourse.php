@@ -74,9 +74,9 @@ if ($courseName == "" || $courseNumber == "" || $courseSeqNumber == "" || $teach
     setInterval("refer()", 1000); // 启动1秒定时
     function refer(){ 
        if (t == 0) {
-             location = "admLogIn.html"; // 设定跳转的链接地址
+             location = "addCourse.php"; // 设定跳转的链接地址
         }
-        document.getElementById('show').innerHTML = "" + t + "秒后跳转到登录页面<br/><a href = 'admLogIn.html'>现在跳转</a>"; // 显示倒计时
+        document.getElementById('show').innerHTML = "" + t + "秒后跳转到添加课程页面<br/><a href = 'addCourse.php'>现在跳转</a>"; // 显示倒计时
         t--; // 计数器递减    
     } 
  

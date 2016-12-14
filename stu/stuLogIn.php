@@ -11,7 +11,7 @@ $stuPassword = trim(HTMLSpecialchars($stuPassword));
 
 require "mysqlConfig.php";
 $sql = "select name from student_info WHERE stuNo= '$stuNo' and password = '$stuPassword'";
-echo $sql;
+//echo $sql;
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) == 0) {
     die("不存在此用户，请重新输入信息确认");
@@ -24,7 +24,7 @@ if (mysqli_num_rows($result) == 0) {
         $_SESSION["stuNo"] = $stuNo;
         if ($_SESSION["pageuser"] != '' && $_SESSION["stuNo"] != '') {
             echo "成功登陆";
-            echo $_SESSION["pageuser"]." ".$_SESSION["stuNo"]."<br/>";
+//            echo $_SESSION["pageuser"]." ".$_SESSION["stuNo"]."<br/>";
             echo "<script>
                 window.location.href='information.php';
             </script>";

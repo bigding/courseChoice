@@ -47,7 +47,7 @@ require "header.php";
                             //                            echo $sql1;
                             $result1 = mysqli_query($conn,$sql1);
                             //                            print_r($result1);
-                            if(mysqli_num_rows($result1) == 0){
+                            if(!$result1){
                                 echo "查询课表信息失败，请重新查询";
                             }
                             else{

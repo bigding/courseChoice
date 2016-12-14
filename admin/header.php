@@ -27,6 +27,7 @@
         <li><a href="seeCourse.php"><i class="icon icon-home"></i> <span>查看课程</span></a></li>
         <li><a href="addCourse.php"><i class="icon icon-signal"></i> <span>添加课程</span></a></li>
         <li><a href="checkStudentInfo.php"><i class="icon icon-inbox"></i> <span>查看学生信息</span></a></li>
+        <li><a href="addStudent.php"><i class="icon icon-inbox"></i> <span>添加学生信息</span></a></li>
         <!--<li><a href="switchManage.php"><i class="icon icon-th"></i> <span>入口管理</span></a></li>-->
     </ul>
 </div>
