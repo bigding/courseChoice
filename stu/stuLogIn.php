@@ -24,7 +24,6 @@ if (mysqli_num_rows($result) == 0) {
 } else if (mysqli_num_rows($result) > 1) {
     die("存在多个你的用户信息，请联系管理员修正");
 } else {
-    echo 'mn';
     while ($row = mysqli_fetch_array($result)) {
         $pageuser = $row["name"];
         $_SESSION["pageuser"] = $row['name'];
