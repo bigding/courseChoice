@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>登录处理</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
 <?php
 //echo 'hello';
 session_start();
@@ -36,3 +43,5 @@ if (mysqli_num_rows($result) == 0) {
 if($_SESSION["pageuser"] == '' && $_SESSION["stuNo"] == '')
     session_destroy();
 ?>
+</body>
+</html>
