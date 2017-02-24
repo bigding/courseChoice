@@ -4,7 +4,7 @@ $username = "root";
 $password = "LZ4fZHossCgP";
 $databaseName = "coursechoice";
 
-$conn = new mysqli($servername,$username,$password,$databaseName);
+$conn = mysqli_connect($servername,$username,$password,$databaseName);
 if(!$conn){
     die("连接到数据库错误：".mysqli_error($conn));
 }else{

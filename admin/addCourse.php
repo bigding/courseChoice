@@ -38,7 +38,7 @@ require "header.php";
                         <h5>添加课程</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal" method="post" action="opAddCourse.php" name="basic_validate" id="basic_validate" novalidate="novalidate">
+                        <form class="form-horizontal" method="post" action="opAddStudent.php" name="basic_validate" id="basic_validate" novalidate="novalidate">
                             <div class="control-group">
                                 <label class="control-label">课程名</label>
                                 <div class="controls">
@@ -154,7 +154,7 @@ require "header.php";
                                 </div>
                             </div>
                             <div class="form-actions">
-                                <input type="submit" value="Validate" class="btn btn-success">
+                                <input type="submit" value="提交" class="btn btn-success">
                             </div>
                         </form>
                     </div>

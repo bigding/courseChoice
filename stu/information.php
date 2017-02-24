@@ -34,11 +34,11 @@ require "header.php";
 			<div class="panel panel-default">
 
 				<div class="panel-body">
-					公告内容
-				</div>
+			        欢迎登录选课系统	
+                </div>
 			</div>
 
-
+            
 
 
 		</div>

@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 session_start();
 ?>
 <!DOCTYPE html>
@@ -164,6 +165,7 @@ require "header.php";
                                     ";
                                 }
                             }
+                            echo mysqli_error($conn);
                             ?>
                             </tbody>
                         </table>
@@ -182,7 +184,7 @@ require 'footer.php';
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery.uniform.js"></script>
 <script src="../js/select2.min.js"></script>
-<script src="../js/jquery.dataTables.min.js"></script>
+<!--<script src="../js/jquery.dataTables.min.js"></script>-->
 <script src="../js/matrix.js"></script>
 <script src="../js/matrix.tables.js"></script>
 </body>

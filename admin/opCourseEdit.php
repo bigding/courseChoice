@@ -1,3 +1,23 @@
+
+<html>
+<head>
+<title>退出登录</title>
+<meta name="charset" content="utf-8"/>
+<script type="text/javascript">
+    var t = 5; // 设定跳转的时间
+    setInterval("refer()", 1000); // 启动1秒定时
+    function refer(){ 
+       if (t == 0) {
+             location = "seeCourse.php"; // 设定跳转的链接地址
+        }
+        document.getElementById('show').innerHTML = "" + t + "秒后跳转到查看课程页面<br/><a href = 'seeCourse.php'>现在跳转</a>"; // 显示倒计时
+        t--; // 计数器递减    
+    } 
+ 
+</script>
+</head>
+<body>
+    <div>
 <?php
 session_start();
 require 'isLogin.php';
@@ -78,6 +98,8 @@ if ($courseSeqNumber == "" || $teacherName == "" || $grade == "") {
         }
     }
 }
-
-
 ?>
+    </div>
+    <div id='show'></div>
+</body>
+</html>
