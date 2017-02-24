@@ -9,7 +9,7 @@ if(!$isLogin){
     echo "
     <script>
         window.alert('请先登录');
-        window.location.href = 'stuLogIn.html';
+        window.location.href = 'index.html';
     </script>
     ";
     die();
